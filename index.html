@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Empleo Tenerife — Tu próximo trabajo te espera en el paraíso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ocean: #0077b6;
+      --sky: #00b4d8;
+      --sand: #f4a261;
+      --lava: #e76f51;
+      --night: #03045e;
+      --white: #ffffff;
+      --light: #f8f9ff;
+      --gray: #6b7280;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: #1a1a2e;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,119,182,0.1);
+      transition: box-shadow 0.3s;
+    }
+    nav:hover { box-shadow: 0 4px 30px rgba(0,119,182,0.15); }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--night);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--ocean); }
+
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0,119,182,0.3);
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,119,182,0.45); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #e8f4fd 0%, #f0f9ff 40%, #fff8f0 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: float 8s ease-in-out infinite;
+    }
+    .blob-1 { width: 600px; height: 600px; background: var(--sky); top: -200px; right: -100px; animation-delay: 0s; }
+    .blob-2 { width: 400px; height: 400px; background: var(--sand); bottom: -100px; left: -80px; animation-delay: 3s; }
+    .blob-3 { width: 300px; height: 300px; background: var(--lava); top: 40%; right: 20%; animation-delay: 5s; opacity: 0.2; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,119,182,0.1);
+      border: 1px solid rgba(0,119,182,0.2);
+      color: var(--ocean);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--sky);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title .warm {
+      background: linear-gradient(135deg, var(--sand), var(--lava));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(0,119,182,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,119,182,0.5); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--night);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+
+    .stat { text-align: left; }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--gray); font-weight: 500; }
+
+    /* Hero visual side */
+    .hero-visual {
+      position: relative;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .phone-mockup {
+      width: 280px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .phone-frame {
+      background: #1a1a2e;
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.3),
+        0 0 0 2px rgba(255,255,255,0.1) inset;
+    }
+
+    .phone-screen {
+      background: linear-gradient(160deg, #0077b6, #00b4d8 60%, #f4a261);
+      border-radius: 30px;
+      overflow: hidden;
+      aspect-ratio: 9/19;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-header {
+      padding: 1.5rem 1.2rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(0,0,0,0.2);
+    }
+    .phone-avatar {
+      width: 40px; height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .phone-name { color: white; font-weight: 700; font-size: 0.9rem; }
+    .phone-handle { color: rgba(255,255,255,0.7); font-size: 0.75rem; }
+
+    .phone-posts {
+      flex: 1;
+      padding: 0.8rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+    }
+
+    .post-thumb {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .p1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .p2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .p3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .p4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .p5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+    .p6 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+    .p7 { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+    .p8 { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+    .p9 { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+
+    .phone-floating {
+      position: absolute;
+      background: white;
+      border-radius: 16px;
+      padding: 0.8rem 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .float-1 { top: 10%; right: -20%; animation: floatCard 4s ease-in-out infinite; }
+    .float-2 { bottom: 25%; left: -25%; animation: floatCard 4s ease-in-out infinite 2s; }
+    .float-3 { bottom: 10%; right: -15%; animation: floatCard 4s ease-in-out infinite 1s; }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .float-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-green { background: #22c55e; }
+    .dot-orange { background: var(--sand); }
+    .dot-blue { background: var(--sky); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── WAVE DIVIDER ── */
+    .wave {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-top: -2px;
+    }
+    .wave svg { display: block; }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 6rem 2rem;
+      background: var(--night);
+      position: relative;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 4rem;
+      line-height: 1.7;
+    }
+
+    .features-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s, background 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      background: rgba(0,180,216,0.1);
+      border-color: rgba(0,180,216,0.3);
+    }
+
+    .feature-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.3rem;
+    }
+    .fi-1 { background: linear-gradient(135deg, #0077b6, #00b4d8); }
+    .fi-2 { background: linear-gradient(135deg, #f4a261, #e76f51); }
+    .fi-3 { background: linear-gradient(135deg, #6a0dad, #9b59b6); }
+    .fi-4 { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .fi-5 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .fi-6 { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+    .feature-title {
+      color: white;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+    }
+    .feature-text { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.65; }
+
+    /* ── CATEGORIES ── */
+    .categories {
+      padding: 6rem 2rem;
+      background: var(--light);
+    }
+
+    .section-title-dark {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--night);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub-dark {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 4rem;
+      line-height: 1.7;
+    }
+
+    .section-label-dark {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 1rem;
+    }
+
+    .cats-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .cat-card {
+      background: white;
+      border-radius: 18px;
+      padding: 1.8rem 1.4rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+    .cat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+
+    .cat-emoji { font-size: 2.2rem; margin-bottom: 0.8rem; display: block; }
+    .cat-name { font-weight: 700; font-size: 0.95rem; color: var(--night); margin-bottom: 0.3rem; }
+    .cat-count {
+      font-size: 0.8rem;
+      color: white;
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    /* ── TESTIMONIALS / SOCIAL PROOF ── */
+    .social-proof {
+      padding: 6rem 2rem;
+      background: white;
+    }
+
+    .reviews-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--light);
+      border-radius: 20px;
+      padding: 1.8rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .review-card:hover { transform: translateY(-4px); }
+
+    .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .review-text { color: #374151; font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 0.8rem; }
+    .reviewer-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .rv1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .rv2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .rv3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .reviewer-name { font-weight: 700; font-size: 0.9rem; color: var(--night); }
+    .reviewer-role { font-size: 0.78rem; color: var(--gray); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--night) 0%, #023e8a 50%, #0077b6 100%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,180,216,0.3) 0%, transparent 70%);
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(244,162,97,0.2) 0%, transparent 70%);
+      bottom: -100px; left: 0;
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-text {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--night);
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.3); }
+
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: white;
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-outline-white:hover { transform: translateY(-3px); background: rgba(255,255,255,0.1); }
+
+    /* ── INSTAGRAM FEED PREVIEW ── */
+    .feed-section {
+      padding: 5rem 2rem;
+      background: var(--light);
+      text-align: center;
+    }
+
+    .feed-grid {
+      max-width: 900px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .feed-item {
+      aspect-ratio: 1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .feed-item:hover { transform: scale(1.03); z-index: 2; }
+
+    .feed-item::after {
+      content: '❤️ Ver oferta →';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feed-item:hover::after { opacity: 1; }
+
+    .f1 { background: linear-gradient(135deg, #1a1a2e, #0077b6); }
+    .f2 { background: linear-gradient(135deg, #023e8a, #0096c7); }
+    .f3 { background: linear-gradient(135deg, #0077b6, #48cae4); }
+    .f4 { background: linear-gradient(135deg, #e76f51, #f4a261); }
+    .f5 { background: linear-gradient(135deg, #2d6a4f, #52b788); }
+    .f6 { background: linear-gradient(135deg, #7b2d8b, #a855f7); }
+    .f7 { background: linear-gradient(135deg, #c1121f, #e63946); }
+    .f8 { background: linear-gradient(135deg, #1b4332, #40916c); }
+    .f9 { background: linear-gradient(135deg, #14213d, #fca311); }
+
+    .feed-label {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--night);
+      color: rgba(255,255,255,0.6);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--sky); }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      margin-bottom: 2rem;
+      display: inline-flex;
+    }
+    .footer-ig:hover { transform: scale(1.05); opacity: 0.9; }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; gap: 3rem; padding-top: 6rem; }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .cats-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .cats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🌴</div>
+      Empleo<span>Tenerife</span>
+    </a>
+    <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="nav-cta">
+      📲 Seguir en Instagram
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-blob blob-1"></div>
+      <div class="hero-blob blob-2"></div>
+      <div class="hero-blob blob-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">📍 Las mejores ofertas de Tenerife</div>
+
+        <h1 class="hero-title">
+          Tu próximo trabajo<br/>
+          te espera en el<br/>
+          <span class="warm">paraíso</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Cada día publicamos las mejores ofertas de empleo de Tenerife.
+          Hoteles, restaurantes, comercios, tecnología y mucho más —
+          todo en un solo Instagram.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="btn-primary">
+            🔔 Ver ofertas ahora
+          </a>
+          <a href="#categorias" class="btn-secondary">
+            🗂 Ver categorías
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">+500</div>
+            <div class="stat-label">Ofertas publicadas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">Diario</div>
+            <div class="stat-label">Actualizaciones</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Gratis</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <!-- Floating cards -->
+          <div class="phone-floating float-1">
+            <div class="float-dot dot-green"></div>
+            🏨 Hotel 5★ busca camarero
+          </div>
+          <div class="phone-floating float-2">
+            <div class="float-dot dot-orange"></div>
+            💼 Comercial en Santa Cruz
+          </div>
+          <div class="phone-floating float-3">
+            <div class="float-dot dot-blue"></div>
+            👨‍🍳 Chef en Costa Adeje
+          </div>
+
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <div class="phone-avatar">🌴</div>
+                <div>
+                  <div class="phone-name">empleo_tenerife</div>
+                  <div class="phone-handle">@empleo_tenerife · Instagram</div>
+                </div>
+              </div>
+              <div class="phone-posts">
+                <div class="post-thumb p1">🏨</div>
+                <div class="post-thumb p2">👩‍💼</div>
+                <div class="post-thumb p3">🍽️</div>
+                <div class="post-thumb p4">🛒</div>
+                <div class="post-thumb p5">💻</div>
+                <div class="post-thumb p6">🏗️</div>
+                <div class="post-thumb p7">🚗</div>
+                <div class="post-thumb p8">🏥</div>
+                <div class="post-thumb p9">🌊</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80">
+      <path fill="#03045e" fill-opacity="1"
+        d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+    </svg>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">¿Por qué elegirnos?</div>
+    <h2 class="section-title">Todo lo que necesitas para<br/>encontrar trabajo en Tenerife</h2>
+    <p class="section-sub">Desde hostelería hasta tecnología, tenemos las mejores oportunidades laborales de la isla actualizadas cada día.</p>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon fi-1">📋</div>
+        <div class="feature-title">Ofertas verificadas</div>
+        <div class="feature-text">Cada oferta publicada es real y actualizada. Sin spam ni ofertas caducadas — solo oportunidades reales de empleo.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-2">⚡</div>
+        <div class="feature-title">Publicación diaria</div>
+        <div class="feature-text">Nuevas ofertas todos los días. Activa las notificaciones en Instagram y sé el primero en ver las oportunidades.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-3">🎯</div>
+        <div class="feature-title">100% Tenerife</div>
+        <div class="feature-text">Solo empleos en Tenerife. Sin mezclar con otras ciudades — buscamos lo mejor de la isla para tus búsquedas.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-4">💬</div>
+        <div class="feature-title">Todos los sectores</div>
+        <div class="feature-text">Hostelería, comercio, sanidad, tecnología, construcción... cubrimos todos los sectores laborales de la isla.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-5">🆓</div>
+        <div class="feature-title">Completamente gratis</div>
+        <div class="feature-text">Sin suscripciones ni pagos. Síguenos en Instagram y accede a todas las ofertas gratuitamente.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-6">📲</div>
+        <div class="feature-title">Fácil de usar</div>
+        <div class="feature-text">Todas las ofertas en Instagram. Solo tienes que seguirnos y activar las notificaciones para no perderte nada.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE 2 -->
+  <div class="wave" style="background: #03045e;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80">
+      <path fill="#f8f9ff" fill-opacity="1"
+        d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z"/>
+    </svg>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categorias">
+    <div class="section-label-dark">Sectores laborales</div>
+    <h2 class="section-title-dark">Encuentra trabajo en tu sector</h2>
+    <p class="section-sub-dark">Cubrimos los principales sectores económicos de Tenerife con ofertas actualizadas cada semana.</p>
+
+    <div class="cats-grid reveal">
+      <div class="cat-card">
+        <span class="cat-emoji">🏨</span>
+        <div class="cat-name">Hostelería & Turismo</div>
+        <span class="cat-count">★ Muy activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🍽️</span>
+        <div class="cat-name">Restauración</div>
+        <span class="cat-count">★ Muy activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🛒</span>
+        <div class="cat-name">Comercio & Retail</div>
+        <span class="cat-count">★ Activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">💻</span>
+        <div class="cat-name">Tecnología & IT</div>
+        <span class="cat-count">★ Activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🏥</span>
+        <div class="cat-name">Sanidad & Cuidados</div>
+        <span class="cat-count">★ Activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🏗️</span>
+        <div class="cat-name">Construcción</div>
+        <span class="cat-count">★ Activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">📦</span>
+        <div class="cat-name">Logística & Reparto</div>
+        <span class="cat-count">★ Activo</span>
+      </div>
+      <div class="cat-card">
+        <span class="cat-emoji">🎓</span>
+        <div class="cat-name">Educación</div>
+        <span class="cat-count">★ Activo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEED PREVIEW -->
+  <section class="feed-section">
+    <div class="section-label-dark">Nuestro Instagram</div>
+    <h2 class="section-title-dark">Así se ve <span style="background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">@empleo_tenerife</span></h2>
+    <p class="section-sub-dark">Más de 500 publicaciones con ofertas reales. Síguenos para verlas todas.</p>
+
+    <div class="feed-grid reveal">
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f1"><span class="feed-label">🏨 Recepcionista<br/>Hotel 5★ Sur</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f2"><span class="feed-label">👩‍💼 Comercial<br/>Santa Cruz</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f3"><span class="feed-label">🍽️ Camarero/a<br/>Costa Adeje</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f4"><span class="feed-label">👨‍🍳 Jefe de cocina<br/>Puerto de la Cruz</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f5"><span class="feed-label">💻 Dev Frontend<br/>Remoto + Tenerife</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f6"><span class="feed-label">🏥 Aux. Enfermería<br/>Hospital Tenerife</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f7"><span class="feed-label">🚗 Conductor<br/>Tenerife Norte</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f8"><span class="feed-label">🌊 Instructor Surf<br/>Las Américas</span></a>
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="feed-item f9"><span class="feed-label">💼 RRHH Manager<br/>Grupo Hotelero</span></a>
+    </div>
+
+    <div style="margin-top: 2.5rem;">
+      <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="btn-primary" style="font-size: 1rem; padding: 1rem 2.2rem;">
+        📲 Ver todas las ofertas en Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="social-proof">
+    <div class="section-label-dark">Testimonios</div>
+    <h2 class="section-title-dark">Lo que dicen quienes<br/>encontraron trabajo</h2>
+    <p class="section-sub-dark">Personas reales que consiguieron su empleo gracias a @empleo_tenerife.</p>
+
+    <div class="reviews-grid reveal">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"En menos de dos semanas de seguir la cuenta encontré trabajo en un hotel en el sur. Las ofertas son reales y muy actualizadas, lo recomiendo a todo el mundo."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar rv1">👩</div>
+          <div>
+            <div class="reviewer-name">María G.</div>
+            <div class="reviewer-role">Recepcionista · Hotel en Adeje</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Llegué a Tenerife sin trabajo y esta cuenta fue mi salvación. Ahora llevo un año trabajando en un restaurante en Las Américas. ¡Gracias!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar rv2">👨</div>
+          <div>
+            <div class="reviewer-name">Carlos M.</div>
+            <div class="reviewer-role">Cocinero · Restaurante Las Américas</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"La mejor cuenta de empleo de Tenerife sin duda. Publican todos los días y las ofertas son de calidad. Conseguí mi trabajo de dependienta en Santa Cruz."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar rv3">👩</div>
+          <div>
+            <div class="reviewer-name">Laura P.</div>
+            <div class="reviewer-role">Dependienta · Comercio Santa Cruz</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <div class="cta-badge">🌴 Tenerife te espera</div>
+      <h2 class="cta-title">¿Listo para encontrar<br/>tu trabajo ideal?</h2>
+      <p class="cta-text">
+        Únete a miles de personas que ya siguen @empleo_tenerife
+        y reciben las mejores ofertas de empleo de la isla cada día.
+        Gratis, rápido y directo al grano.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="btn-white">
+          📲 Seguir en Instagram
+        </a>
+        <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="btn-outline-white">
+          🔔 Activar notificaciones
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Empleo<span>Tenerife</span></div>
+    <p class="footer-tagline">Las mejores ofertas de trabajo de la isla, cada día en Instagram.</p>
+    <a href="https://www.instagram.com/empleo_tenerife/" target="_blank" class="footer-ig">
+      📸 @empleo_tenerife
+    </a>
+    <div class="footer-copy">
+      © 2025 Empleo Tenerife · Todos los derechos reservados · Tenerife, Islas Canarias
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Nav shadow on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow =
+        window.scrollY > 10 ? '0 4px 30px rgba(0,119,182,0.15)' : 'none';
+    });
+  </script>
+</body>
+</html>
